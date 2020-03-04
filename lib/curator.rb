@@ -1,3 +1,5 @@
+require 'CSV'
+
 class Curator
   attr_reader :photographs, :artists
 
@@ -45,6 +47,12 @@ class Curator
       end
       acc
     end.flatten
+  end
+
+  def load_photographs(file_location)
+    CSV.foreach(file_location, headers: true, header_converters: :symbol) do |row|
+      @photographs << Photograph.new(row)
+    end
   end
 
 end

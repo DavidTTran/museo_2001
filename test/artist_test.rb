@@ -32,4 +32,5 @@ class ArtistTest < Minitest::Test
   def test_it_can_find_age_at_death
     assert_equal 82, @artist.age_at_death
   end
+  
 end

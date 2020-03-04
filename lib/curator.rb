@@ -68,7 +68,7 @@ class Curator
   end
 
   def artists_photographs_by_age(artist)
-    find_photographs_by_artist(artist).reduce(Hash.new("")) do |acc, photographs|
+    find_photographs_by_artist(artist).reduce({}) do |acc, photographs|
       acc[photographs.year.to_i - artist.born.to_i] = photographs.name
       acc
     end

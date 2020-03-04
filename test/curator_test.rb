@@ -80,20 +80,6 @@ class CuratorTest < Minitest::Test
   end
 
   def test_it_can_find_artists_by_id
-    artist_1 = Artist.new({
-      id: "1",
-      name: "Henri Cartier-Bresson",
-      born: "1908",
-      died: "2004",
-      country: "France"
-    })
-    artist_2 = Artist.new({
-      id: "2",
-      name: "Ansel Adams",
-      born: "1902",
-      died: "1984",
-      country: "United States"
-    })
     @curator.add_artist(@artist_1)
     @curator.add_artist(@artist_2)
 
@@ -186,6 +172,7 @@ class CuratorTest < Minitest::Test
       44 => "Identical Twins, Roselle, New Jersey",
       39 =>"Child with Toy Hand Grenade in Central Park"
     }
+
     assert_equal expected, @curator.artists_photographs_by_age(diane_arbus)
   end
 

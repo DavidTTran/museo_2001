@@ -63,8 +63,14 @@ class Curator
 
   def photographs_taken_between(years)
     @photographs.find_all do |photograph|
-      # require "pry"; binding.pry
       years.to_a.include?(photograph.year.to_i)
+    end
+  end
+
+  def artists_photographs_by_age(artist)
+    find_photographs_by_artist(artist).reduce(Hash.new("")) do |acc, photographs|
+      acc[photographs.year.to_i - artist.born.to_i] = photographs.name
+      acc
     end
   end
 

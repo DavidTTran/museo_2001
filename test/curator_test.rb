@@ -177,4 +177,16 @@ class CuratorTest < Minitest::Test
     end
   end
 
+  def test_it_can_sort_photographs_by_an_artists_age
+    @curator.load_photographs('./data/photographs.csv')
+    @curator.load_artists('./data/artists.csv')
+    diane_arbus = @curator.find_artist_by_id("3")
+    expected =
+    {
+      44 => "Identical Twins, Roselle, New Jersey",
+      39 =>"Child with Toy Hand Grenade in Central Park"
+    }
+    assert_equal expected, @curator.artists_photographs_by_age(diane_arbus)
+  end
+
 end

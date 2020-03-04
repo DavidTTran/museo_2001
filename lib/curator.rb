@@ -61,4 +61,11 @@ class Curator
     end
   end
 
+  def photographs_taken_between(years)
+    @photographs.find_all do |photograph|
+      # require "pry"; binding.pry
+      years.to_a.include?(photograph.year.to_i)
+    end
+  end
+
 end

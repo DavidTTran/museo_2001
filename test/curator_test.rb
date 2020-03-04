@@ -167,4 +167,14 @@ class CuratorTest < Minitest::Test
     @curator.artists.each { |artist| assert_instance_of Artist, artist }
   end
 
+  def test_it_can_find_photographs_taken_between_range_of_dates
+    @curator.load_photographs('./data/photographs.csv')
+    @curator.load_artists('./data/artists.csv')
+
+    assert_equal 2, @curator.photographs_taken_between(1950..1965).size
+    @curator.photographs_taken_between(1950..1965).each do |photograph|
+      assert (1950..1965).to_a.include? photograph.year.to_i
+    end
+  end
+
 end

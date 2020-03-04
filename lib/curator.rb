@@ -24,7 +24,7 @@ class Curator
 
   def photographs_by_artist
     @artists.reduce({}) do |acc, artist|
-      acc[artist] = find_photographs_by_artist(artist).flatten
+      acc[artist] = find_photographs_by_artist(artist)
       acc
     end
   end
@@ -37,4 +37,14 @@ class Curator
       acc
     end
   end
+
+  def photographs_taken_by_artist_from(country)
+    photographs_by_artist.reduce([]) do |acc, (artist, photographs)|
+      if artist.country == country
+        acc << photographs
+      end
+      acc
+    end.flatten
+  end
+
 end

@@ -28,4 +28,13 @@ class Curator
       acc
     end
   end
+
+  def artists_with_multiple_photographs
+    photographs_by_artist.reduce([]) do |acc, (artist, photographs)|
+      if photographs.size > 1
+        acc << artist.name
+      end
+      acc
+    end
+  end
 end

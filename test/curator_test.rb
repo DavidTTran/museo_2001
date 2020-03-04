@@ -160,4 +160,11 @@ class CuratorTest < Minitest::Test
     @curator.photographs.each { |photograph| assert_instance_of Photograph, photograph }
   end
 
+  def test_it_can_load_artists
+    @curator.load_artists('./data/artists.csv')
+
+    assert_equal 6, @curator.artists.size
+    @curator.artists.each { |artist| assert_instance_of Artist, artist }
+  end
+
 end
